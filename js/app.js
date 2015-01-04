@@ -20,8 +20,8 @@
     var buttun_quickstart_adduser = document.getElementById("buttun_quickstart_adduser");
     buttun_quickstart_adduser.addEventListener("click", function() {
       var user = new Parse.User();
-      user.set("username", "my name");
-      user.set("password", "my pass");
+      user.set("username", "myname");
+      user.set("password", "mypass");
       user.set("email", "email@example.com");
         
       // other fields can be set just like with Parse.Object
@@ -37,6 +37,22 @@
         }
       });
     }, false)
+
+    // docs, signing in
+    // https://www.parse.com/docs/js_guide#users-login
+    var button_docs_signingin = document.getElementById("button_docs_signingin");
+    button_docs_signingin.addEventListener("click", function() {
+      Parse.User.logIn("myname", "mypass", {
+        success: function(user) {
+          // Do stuff after successful login.
+          alert(Parse.User.current().get("username"));
+        },
+        error: function(user, error) {
+          // The login failed. Check error to see why.
+          alert("signing in failed");
+        }
+      });
+    });
 
   }, false);
 
